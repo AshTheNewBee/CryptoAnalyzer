@@ -14,6 +14,19 @@ import './App.css';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import CryptoData from './store/CryptoData.json';
 
+/*********************************
+ * @CryptoAnalyzer
+ *  App for analyzing crypto currencies data and 
+ *  process historical price list of currencies provided by a currency exchange
+ *  
+ * Assumptions:
+  1. Input time will always be in 24hrs
+  2. Input date will always be formated in yyyymmdd
+  3. Buying time ends at 1200 hence, returns the best price before 1200
+ `4. Selling time starts after 1200 hence, returns the best price after 1200
+ * 
+*********************************/ 
+
 export default class App extends React.Component {
   state = {
     analysedArr: [],
@@ -23,14 +36,6 @@ export default class App extends React.Component {
   componentDidMount() {
     this.filterData()
   }
-
-  /*
-  Assumptions:
-  1. Time will always be in 24hrs
-  2. Date will always be formated in yyyymmdd
-  3. Buying time ends at 1200 hence, returns the best price before 1200
- `4. Selling time starts after 1200
-  */
 
   /*********************************
    * @filterData
@@ -46,7 +51,7 @@ export default class App extends React.Component {
    *  
    *********************************/
 
-  filterData = (filterDate = '2018-05-07') => {
+  filterData = () => {
     let currencyName, date, bestBuyingQuote, bestSellingQuote, profit, filteredArr = []
 
     CryptoData.forEach(data => {
@@ -106,7 +111,7 @@ export default class App extends React.Component {
       time === '2400' ?  amOrPM = 'am' : amOrPM = 'pm'
       hr = timeArr[0] % 12 === 0 ? 12 : timeArr[0] % 12
     }
-    return `${hr}:${timeArr[1]} ${amOrPM}`
+    return `${hr}:${timeArr[1]}${amOrPM}`
   }
 
    /*********************************
