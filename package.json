@@ -10,7 +10,7 @@
     "react-bootstrap-table2-filter": "^1.1.10",
     "react-bootstrap-table2-toolkit": "^2.0.1",
     "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1"
+    "react-scripts": "5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
